@@ -1,17 +1,23 @@
 package models;
 
+import javax.persistence.*;
+
 /**
  * Address
  */
-public class Address extends Entity {
+@Entity
+@Table(name = "address")
+public class Address extends BaseEntity {
 
     private String street;
     private String code;
     private String city;
     private String state;
-    private Country country;
-    private Type type;
-    private boolean prefered;
+    @Column(length = 2)
+    private String country;
+    @Enumerated(EnumType.STRING)
+    private Category category;
+    private int preference;
 
     public String getStreet() {
         return street;
@@ -45,32 +51,46 @@ public class Address extends Entity {
         this.state = state;
     }
 
-    public Country getCountry() {
+    public String getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
+    public void setCountry(String country) {
         this.country = country;
     }
 
-    public Type getType() {
-        return type;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public boolean isPrefered() {
-        return prefered;
+    public int getPreference() {
+        return preference;
     }
 
-    public void setPrefered(boolean prefered) {
-        this.prefered = prefered;
+    public void setPreference(int preference) {
+        this.preference = preference;
     }
 
-    public enum Type {
+    @Override
+    public String toString() {
+        return "Address{" +
+                "street='" + street + '\'' +
+                ", code='" + code + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", category=" + category +
+                ", preference=" + preference +
+                "} " + super.toString();
+    }
+
+    public enum Category {
         HOME,
-        WORK
+        WORK,
+        BILLING
     }
 }
