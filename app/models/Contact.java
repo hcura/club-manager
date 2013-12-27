@@ -66,11 +66,9 @@ public class Contact extends BaseEntity {
         private String name;
 
         public Type() {
-            super();
         }
 
         public Type(String name) {
-            super();
             this.name = name;
         }
 
@@ -96,11 +94,9 @@ public class Contact extends BaseEntity {
         private String name;
 
         public Category() {
-            super();
         }
 
         public Category(String name) {
-            super();
             this.name = name;
         }
 

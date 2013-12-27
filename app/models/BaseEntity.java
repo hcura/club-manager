@@ -1,25 +1,20 @@
 package models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Base class
+ * Base model for database entities
  */
 @MappedSuperclass
-public abstract class BaseEntity {
+public abstract class BaseEntity implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "seq")
     private Long id;
     private Date createdAt;
     private Date updatedAt;
-
-    protected BaseEntity() {
-        createdAt = new Date();
-        updatedAt = new Date();
-    }
 
     public Long getId() {
         return id;
@@ -52,5 +47,15 @@ public abstract class BaseEntity {
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
                 '}';
+    }
+
+    @PrePersist
+    public void prePersist() {
+        createdAt = new Date();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = new Date();
     }
 }

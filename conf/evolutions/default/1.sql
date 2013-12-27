@@ -1,5 +1,7 @@
 # --- !Ups
 
+CREATE SEQUENCE seq;
+
 CREATE TABLE address (
   id         BIGINT,
   createdAt  TIMESTAMP,
@@ -84,6 +86,8 @@ CREATE TABLE member_custom_attribute_type (
 );
 
 # --- !Downs
+
+DROP SEQUENCE seq;
 
 DROP TABLE address;
 DROP TABLE contact;

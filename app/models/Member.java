@@ -39,15 +39,10 @@ public class Member extends BaseEntity {
     @ManyToOne
     private Category category;
     @OneToMany
-    @JoinTable(
-            name = "member_custom_attribute",
-            joinColumns = {@JoinColumn(name = "member_id")},
-            inverseJoinColumns = {@JoinColumn(name = "custom_attribute_id")}
-    )
+    @JoinColumn(name = "member_id")
     private Set<CustomAttribute> customAttributes;
 
     public Member() {
-        super();
         addresses = new HashSet<>();
         contacts = new HashSet<>();
         customAttributes = new HashSet<>();
@@ -148,11 +143,9 @@ public class Member extends BaseEntity {
         private String name;
 
         public Category() {
-            super();
         }
 
         public Category(String name) {
-            super();
             this.name = name;
         }
 
@@ -183,11 +176,9 @@ public class Member extends BaseEntity {
         private CustomAttributeType type;
 
         public CustomAttribute() {
-            super();
         }
 
         public CustomAttribute(String value, CustomAttributeType type) {
-            super();
             this.value = value;
             this.type = type;
         }
@@ -226,11 +217,9 @@ public class Member extends BaseEntity {
         private String name;
 
         public CustomAttributeType() {
-            super();
         }
 
         public CustomAttributeType(String name) {
-            super();
             this.name = name;
         }
 
