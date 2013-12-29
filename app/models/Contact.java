@@ -1,6 +1,9 @@
 package models;
 
+import play.data.validation.Constraints;
+
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -11,10 +14,13 @@ import javax.persistence.Table;
 @Table(name = "contact")
 public class Contact extends BaseEntity {
 
+    @Constraints.Required
     private String value;
     @ManyToOne
+    @JoinColumn(name = "type_id")
     private Type type;
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
     private int preference;
 
@@ -63,6 +69,7 @@ public class Contact extends BaseEntity {
     @Entity
     @Table(name = "contact_type")
     public static class Type extends BaseEntity {
+        @Constraints.Required
         private String name;
 
         public Type() {
@@ -91,6 +98,7 @@ public class Contact extends BaseEntity {
     @Entity
     @Table(name = "contact_category")
     public static class Category extends BaseEntity {
+        @Constraints.Required
         private String name;
 
         public Category() {

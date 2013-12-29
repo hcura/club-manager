@@ -1,6 +1,9 @@
 package models;
 
+import play.data.validation.Constraints;
+
 import javax.persistence.*;
+import javax.validation.constraints.Past;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,15 +14,22 @@ import java.util.Set;
  * @author Hugo Cura
  */
 @Entity
-@Table(name = "member")
+@Table(
+        name = "member",
+        uniqueConstraints = @UniqueConstraint(columnNames = "member")
+)
 public class Member extends BaseEntity {
 
+    @Constraints.Required
     private String member;
+    @Constraints.Required
     private String name;
+    @Past
     private Date birth;
+    @Constraints.Required
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @Column(length = 2)
+    @Constraints.Required
     private String country;
     @OneToMany
     @JoinTable(
@@ -35,6 +45,7 @@ public class Member extends BaseEntity {
             inverseJoinColumns = {@JoinColumn(name = "contact_id")}
     )
     private Set<Contact> contacts;
+    @Constraints.Required
     private Date admission;
     @ManyToOne
     private Category category;
@@ -139,7 +150,7 @@ public class Member extends BaseEntity {
     @Entity
     @Table(name = "member_category")
     public static class Category extends BaseEntity {
-
+        @Constraints.Required
         private String name;
 
         public Category() {
@@ -171,8 +182,10 @@ public class Member extends BaseEntity {
     @Entity
     @Table(name = "member_custom_attribute")
     public static class CustomAttribute extends BaseEntity {
+        @Constraints.Required
         private String value;
         @ManyToOne
+        @JoinColumn(name = "type_id")
         private CustomAttributeType type;
 
         public CustomAttribute() {
@@ -214,6 +227,7 @@ public class Member extends BaseEntity {
     @Entity
     @Table(name = "member_custom_attribute_type")
     public static class CustomAttributeType extends BaseEntity {
+        @Constraints.Required
         private String name;
 
         public CustomAttributeType() {

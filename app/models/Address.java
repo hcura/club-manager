@@ -1,6 +1,11 @@
 package models;
 
-import javax.persistence.*;
+import play.data.validation.Constraints;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Table;
 
 /**
  * Address
@@ -9,11 +14,14 @@ import javax.persistence.*;
 @Table(name = "address")
 public class Address extends BaseEntity {
 
+    @Constraints.Required
     private String street;
+    @Constraints.Required
     private String code;
+    @Constraints.Required
     private String city;
     private String state;
-    @Column(length = 2)
+    @Constraints.Required
     private String country;
     @Enumerated(EnumType.STRING)
     private Category category;
