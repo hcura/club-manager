@@ -1,4 +1,4 @@
-package models;
+package com.bwu.cm.models;
 
 import play.data.validation.Constraints;
 

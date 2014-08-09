@@ -1,6 +1,6 @@
-package controllers;
+package com.bwu.cm.controllers;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import play.mvc.Controller;
 import play.mvc.Result;
 

@@ -1,4 +1,4 @@
-package models;
+package com.bwu.cm.models;
 
 public enum Gender {
     MALE,

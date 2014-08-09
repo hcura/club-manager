@@ -1,4 +1,4 @@
-package models;
+package com.bwu.cm.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
