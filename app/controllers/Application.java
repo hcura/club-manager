@@ -1,23 +1,16 @@
 package controllers;
 
-import models.Member;
-import play.db.jpa.JPA;
-import play.db.jpa.Transactional;
+import com.google.inject.Inject;
 import play.mvc.Controller;
 import play.mvc.Result;
 
 public class Application extends Controller {
 
-    @Transactional
-    public static Result index() {
+    @Inject
+    public Application() {
+    }
 
-        Member member = new Member();
-        member.setName("Hugo Cura");
-
-        JPA.em().persist(member);
-
-        //JPA.em().find(Member.class, 1L);
-
+    public Result index() {
         return ok();
     }
 
